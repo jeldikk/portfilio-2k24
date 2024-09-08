@@ -9,8 +9,8 @@ and "delete" any "Todo" records.
 const schema = a.schema({
   message: a
     .model({
-      from: a.string().required(),
-      body: a.string().required(),
+      contact: a.string().required().default("anonymous"),
+      message: a.string().required(),
     })
     .authorization((allow) => [allow.guest().to(["read", "create"])]),
 });

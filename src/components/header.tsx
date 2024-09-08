@@ -11,17 +11,18 @@ import Link from "next/link";
 export default function Header() {
   return (
     <header className="sticky top-0">
-      <Navbar fluid rounded>
+      <Navbar fluid rounded className="bg-orange-200">
         <NavbarBrand as={Link} href="/">
           <Image
+            className="rounded-full"
             width={30}
             height={30}
             src={"/images/cartoon-pic.jpg"}
             alt="jeldikk brand pic"
             sizes=""
           />
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Hi, iamkamal
+          <span className="self-center whitespace-nowrap text-xl dark:text-white">
+            Hi, I&apos;m kamal
           </span>
         </NavbarBrand>
         <NavbarToggle />
