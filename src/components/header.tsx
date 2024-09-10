@@ -1,3 +1,9 @@
+"use client";
+
+import {
+  AuthDetailsContext,
+  type IAuthDetailsContextType,
+} from "@/context/auth.context";
 import {
   Navbar,
   NavbarBrand,
@@ -7,11 +13,16 @@ import {
 } from "flowbite-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useContext } from "react";
 
 export default function Header() {
+  const { authDetails, signOut } = useContext(
+    AuthDetailsContext
+  ) as IAuthDetailsContextType;
+  console.log({ authDetails });
   return (
-    <header className="sticky top-0">
-      <Navbar fluid rounded className="bg-orange-200">
+    <header className="sticky to p-0">
+      <Navbar fluid>
         <NavbarBrand as={Link} href="/">
           <Image
             className="rounded-full"
@@ -30,6 +41,20 @@ export default function Header() {
           <NavbarLink as={Link} href="/contact">
             Contact Me
           </NavbarLink>
+          {authDetails?.isAuthenticated ? (
+            <>
+              <NavbarLink as={Link} href="/admin/dashboard">
+                Dashboard
+              </NavbarLink>
+              <NavbarLink as={Link} href="#" onClick={() => signOut()}>
+                Logout
+              </NavbarLink>
+            </>
+          ) : (
+            <NavbarLink as={Link} href="/auth/login">
+              Login
+            </NavbarLink>
+          )}
         </NavbarCollapse>
       </Navbar>
     </header>
