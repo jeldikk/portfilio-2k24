@@ -3,9 +3,7 @@ import outputs from "@/../amplify_outputs.json";
 import { cookies } from "next/headers";
 import { generateServerClientUsingCookies } from "@aws-amplify/adapter-nextjs/api";
 import { type Schema } from "../../amplify/data/resource";
-import { AuthUser, signOut } from "aws-amplify/auth";
 import { getCurrentUser } from "aws-amplify/auth/server";
-import { redirect } from "next/navigation";
 
 export const { runWithAmplifyServerContext } = createServerRunner({
   config: outputs,

@@ -21,7 +21,7 @@ export default function Header() {
   ) as IAuthDetailsContextType;
   console.log({ authDetails });
   return (
-    <header className="sticky to p-0">
+    <header className="sticky top-0 bg-current">
       <Navbar fluid>
         <NavbarBrand as={Link} href="/">
           <Image
