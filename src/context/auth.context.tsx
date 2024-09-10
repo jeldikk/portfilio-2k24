@@ -72,12 +72,12 @@ export function AuthDetailsContextProvider(props: Props) {
             isAuthenticated: true,
             user: payload.data,
           });
-          router.push("/");
           break;
         case "signedOut":
           setAuthDetails({ isAuthenticated: false, user: null });
           break;
       }
+      router.push("/");
     });
 
     return () => {
