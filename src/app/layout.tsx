@@ -21,7 +21,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isAuthenticated, user } = await fetchUserDetails();
+  let isAuthenticated, user;
+  try {
+    const userDetails = await fetchUserDetails();
+    isAuthenticated = userDetails.isAuthenticated;
+    user = userDetails.user;
+  } catch (err) {
+    isAuthenticated = false;
+    user = null;
+  }
+
   return (
     <html lang="en">
       <body className={inter.className}>
