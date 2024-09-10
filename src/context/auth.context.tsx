@@ -3,7 +3,6 @@ import { AuthUser, signOut } from "aws-amplify/auth";
 import { Hub } from "aws-amplify/utils";
 import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
-import { useQuery } from "react-query";
 
 export interface IAuthDetails {
   isAuthenticated: boolean;
@@ -67,27 +66,25 @@ export function AuthDetailsContextProvider(props: Props) {
   useEffect(() => {
     const authSub = Hub.listen("auth", (data) => {
       const { payload } = data;
-      console.log({ data });
       switch (payload.event) {
         case "signedIn":
-          console.log("user have been successfully signed-in");
           setAuthDetails({
             isAuthenticated: true,
             user: payload.data,
           });
-          router.push("/");
           break;
         case "signedOut":
-          console.log("User is signed out succesfully");
           setAuthDetails({ isAuthenticated: false, user: null });
           break;
       }
+      router.push("/");
     });
 
     return () => {
+      console.log("unsubscribing from the auth channel");
       authSub();
     };
-  }, []);
+  }, [router]);
 
   return (
     <AuthDetailsContext.Provider value={{ authDetails, signOut }}>

@@ -1,14 +1,6 @@
 "use client";
-import {
-  Button,
-  Label,
-  Textarea,
-  TextInput,
-  Toast,
-  ToastToggle,
-} from "flowbite-react";
+import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import { FieldErrors, useForm } from "react-hook-form";
-import { HiFire } from "react-icons/hi";
 
 type Inputs = {
   contact: string;
@@ -29,7 +21,6 @@ export default function ContactMeForm() {
     fieldErrors: FieldErrors<Inputs>,
     fieldName: keyof Inputs
   ) => {
-    console.log({ fieldErrors, fieldName });
     const errorState = errors[fieldName];
     if (errorState) {
       return "failure";
