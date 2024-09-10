@@ -32,7 +32,7 @@ type Props = {
 export default function SkillPillsList(props: Props) {
   const { list } = props;
   return (
-    <div className="skill-pills-list flex justify-around flex-wrap">
+    <div className="skill-pills-list flex justify-around flex-wrap gap-2 md:gap-0">
       {list.map((skill) => (
         <SkillPillsItem key={skill.name} skill={skill} />
       ))}
