@@ -10,17 +10,17 @@ export default function CompanyExperience(props: Props) {
   const { companyName, place, from, to, details, role } = props.experience;
   return (
     <Card className="company-experience bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
-      <h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+      <h5 className="text-base md:text-xl font-bold tracking-tight text-gray-900 dark:text-white">
         {companyName}
-        <span className="text-sm mx-2">{place}</span>
+        <span className="text-xs md:text-sm mx-2">{place}</span>
       </h5>
-      <div className="flex gap-2">
+      <div className="flex gap-2 text-xs md:text-base">
         <Badge color="success">From: {from}</Badge>
         <Badge color="failure">To: {to}</Badge>
       </div>
       <div>
         Role:{" "}
-        <Badge color="indigo" className="inline-block text-md">
+        <Badge color="indigo" className="inline-block text-sm md:text-md">
           {role}
         </Badge>
       </div>
@@ -28,7 +28,7 @@ export default function CompanyExperience(props: Props) {
         <List>
           {details.map((detail) => (
             <ListItem
-              className="text-sm text-orange-200"
+              className="text-xs md:text-md text-orange-200"
               icon={HiCheckCircle}
               key={detail}
             >

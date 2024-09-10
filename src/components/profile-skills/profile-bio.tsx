@@ -8,11 +8,11 @@ export default function ProfileBio() {
   };
   return (
     <div className="profile-bio w-100">
-      <div className="flex flex-col">
-        <div className="name text-center text-2xl font-bold tracking-wider">
+      <div className="flex flex-col gap-1 md:gap-2">
+        <div className="name text-center text-xl md:text-2xl font-bold tracking-wider">
           Jeldi Kamal Kumar
         </div>
-        <div className="wishing text-center text-lg">
+        <div className="wishing text-center text-sm md:text-lg">
           Aspiring Cloud Native
           <br /> Fullstack Developer
         </div>
