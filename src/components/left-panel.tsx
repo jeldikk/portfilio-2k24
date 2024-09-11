@@ -1,6 +1,7 @@
 import ProfileBio from "./profile-skills/profile-bio";
 import ProfilePic from "./profile-skills/profile-pic";
 import SkillList from "./profile-skills/skill-list";
+import { SocialProfilesList } from "./profile-skills/social-profiles";
 
 export default function LeftPanel() {
   return (
@@ -14,6 +15,9 @@ export default function LeftPanel() {
             <ProfileBio />
           </div>
         </div>
+      </div>
+      <div className="social-profiles">
+        <SocialProfilesList></SocialProfilesList>
       </div>
       <div className="hidden md:block">
         <SkillList skills={[]} />
