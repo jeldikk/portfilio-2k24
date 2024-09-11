@@ -36,7 +36,12 @@ export function SocialProfilesList() {
   return (
     <div className="social-profiles flex flex-row flex-wrap justify-around pb-4 px-2">
       {SOCIAL_PROFILES.map((item) => (
-        <SocialProfileItem name={item.name} icon={item.icon} href={item.href} />
+        <SocialProfileItem
+          key={item.name}
+          name={item.name}
+          icon={item.icon}
+          href={item.href}
+        />
       ))}
     </div>
   );
