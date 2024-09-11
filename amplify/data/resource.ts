@@ -13,6 +13,17 @@ const schema = a.schema({
       message: a.string().required(),
     })
     .authorization((allow) => [allow.guest().to(["read", "create"])]),
+  resumeUploads: a
+    .model({
+      id: a.id().required(),
+      name: a.string().required(),
+      description: a.string().default("Uploading file description"),
+      filePath: a.string(),
+    })
+    .authorization((allow) => [
+      allow.guest().to(["read"]),
+      allow.authenticated().to(["get", "create", "update"]),
+    ]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -20,7 +31,7 @@ export type Schema = ClientSchema<typeof schema>;
 export const data = defineData({
   schema,
   authorizationModes: {
-    defaultAuthorizationMode: "iam",
+    defaultAuthorizationMode: "userPool",
   },
 });
 
