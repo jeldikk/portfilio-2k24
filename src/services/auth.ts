@@ -29,7 +29,6 @@ export async function isAuthenticated() {
           session.tokens?.idToken !== undefined
         );
       } catch (error) {
-        console.log(error);
         return false;
       }
     },

@@ -19,7 +19,6 @@ export default function Header() {
   const { authDetails, signOut } = useContext(
     AuthDetailsContext
   ) as IAuthDetailsContextType;
-  console.log({ authDetails });
   return (
     <header className="sticky top-0 bg-current">
       <Navbar fluid>

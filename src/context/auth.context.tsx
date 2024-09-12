@@ -24,45 +24,8 @@ type Props = {
 };
 
 export function AuthDetailsContextProvider(props: Props) {
-  //   const { isAuthenticated, details } = props;
   const router = useRouter();
   const [authDetails, setAuthDetails] = useState<IAuthDetails>(props.details);
-  //   const { data, isLoading } = useQuery({
-  //     queryKey: "authDetails",
-  //     queryFn: async () => {
-  //       try {
-  //         const response = await fetch("/api/auth/user", {
-  //           credentials: "include",
-  //         });
-  //         if (response.ok) {
-  //           const body = await response.json();
-  //           return body;
-  //         }
-  //       } catch (err) {
-  //         return err;
-  //       }
-  //     },
-  //     refetchOnWindowFocus: false,
-  //   });
-  //   useEffect(() => {
-  //     console.log({ isLoading, data });
-  //     if (!isLoading && data) {
-  //       setAuthDetails(data);
-  //     }
-  //   }, [isLoading, data]);
-  //   useEffect(() => {
-  //     if (props.isAuthenticated) {
-  //       setAuthDetails({
-  //         isAuthenticated: props.isAuthenticated,
-  //         user: props.details,
-  //       });
-  //     } else {
-  //       setAuthDetails({
-  //         isAuthenticated: false,
-  //         user: null,
-  //       });
-  //     }
-  //   }, [authDetails]);
   useEffect(() => {
     const authSub = Hub.listen("auth", (data) => {
       const { payload } = data;

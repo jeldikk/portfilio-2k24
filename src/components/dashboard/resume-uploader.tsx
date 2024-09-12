@@ -1,9 +1,8 @@
 "use client";
 import { FileUploader } from "@aws-amplify/ui-react-storage";
 import { Alert } from "flowbite-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useMutation } from "react-query";
-// import { client } from "@/utils/amplify.browser";
 
 type SuccessResponse = {
   status: string;
@@ -22,7 +21,6 @@ export default function ResumeUploader() {
   >({
     mutationKey: "update-resume-record",
     mutationFn: async (data) => {
-      console.log({ data });
       //   return new Promise(() => {});
       const response = await fetch("/api/resume", {
         method: "PATCH",
@@ -32,21 +30,15 @@ export default function ResumeUploader() {
       const json = await response.json();
       return json;
     },
-    onSuccess: (data) => {
-      console.log({ data });
-    },
+    onSuccess: (data) => {},
   });
 
   const handleUploadError = (error: string, file: { key: string }) => {
-    console.log("Upload Error handler is called");
-    console.log({ error, file });
     setUploadError(error);
   };
 
   const handleUploadSuccess = (file: { key?: string }) => {
     setUploadError("");
-    console.log("Upload Success handler is called");
-    console.log({ file });
     mutate({ fileKey: file.key! });
   };
 
