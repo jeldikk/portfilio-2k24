@@ -1,5 +1,6 @@
 import {
   cookiesClient,
+  getAuthenticatedUser,
   runWithAmplifyServerContext,
 } from "@/utils/amplify.server";
 import { getUrl } from "aws-amplify/storage/server";
@@ -8,9 +9,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const response = NextResponse.next();
-  const record = await cookiesClient.models.resumeUploads.get({
-    id: process.env.UPLOADED_RESUME_RECORD_ID as string,
-  });
+  const authDetails = await getAuthenticatedUser();
+  const record = await cookiesClient.models.resumeUploads.get(
+    {
+      id: process.env.UPLOADED_RESUME_RECORD_ID as string,
+    },
+    { authMode: authDetails.isAuthenticated ? "userPool" : "identityPool" }
+  );
   const filePath = record.data?.filePath as string;
   console.log({ filePath, record });
   const urlDetails = await runWithAmplifyServerContext({

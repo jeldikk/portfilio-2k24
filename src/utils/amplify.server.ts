@@ -19,7 +19,12 @@ export async function getAuthenticatedUser() {
     const user = await runWithAmplifyServerContext({
       nextServerContext: { cookies },
       operation: async (contextSpec) => {
-        return getCurrentUser(contextSpec);
+        try {
+          const userDetails = await getCurrentUser(contextSpec);
+          return userDetails;
+        } catch (err) {
+          return null;
+        }
       },
     });
     const isAuthenticated = !!(user && user.userId);

@@ -21,7 +21,7 @@ const schema = a.schema({
       filePath: a.string(),
     })
     .authorization((allow) => [
-      allow.guest().to(["read"]),
+      allow.guest().to(["get"]),
       allow.authenticated().to(["get", "create", "update"]),
     ]),
 });
