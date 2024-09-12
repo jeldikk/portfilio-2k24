@@ -23,18 +23,13 @@ export default function ProfileBio() {
       return body;
     },
     onSuccess: (data) => {
-      console.log("successuflly generated link and is called onSuccess");
-      console.log({ data });
       downloadLinkRef.current?.click();
     },
     enabled: false,
   });
   const handleDownloadResume = async () => {
-    console.log("handle Download Resume");
     refetch();
   };
-
-  console.log({ downloadLinkRef });
 
   return (
     <div className="profile-bio w-100">

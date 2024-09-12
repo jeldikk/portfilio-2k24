@@ -17,7 +17,6 @@ export async function GET(request: NextRequest) {
     { authMode: authDetails.isAuthenticated ? "userPool" : "identityPool" }
   );
   const filePath = record.data?.filePath as string;
-  console.log({ filePath, record });
   const urlDetails = await runWithAmplifyServerContext({
     nextServerContext: { request, response },
     operation: async (contextSpec) => {
@@ -31,7 +30,6 @@ export async function GET(request: NextRequest) {
         });
         return downloadUrl;
       } catch (err) {
-        console.error({ err });
         return NextResponse.json({
           message: err,
         });
@@ -44,13 +42,10 @@ export async function GET(request: NextRequest) {
 
 export async function PATCH(request: Request) {
   const body = await request.json(); // {uploadedFile: string}
-  console.log({ env: JSON.stringify(process.env), "process.env": process.env });
   const { data, errors } = await cookiesClient.models.resumeUploads.get({
     id: process.env.UPLOADED_RESUME_RECORD_ID as string,
   });
-  console.log({ data, errors, cookies: cookies() });
   if (errors) {
-    console.error({ errors });
     return Response.json(
       { errors },
       {
@@ -71,9 +66,7 @@ export async function PATCH(request: Request) {
         description: "description of resume file uploaded",
         filePath: body.fileKey,
       });
-      //   console.log({ createdRecord });
     }
-    console.log({ record });
     return Response.json({
       success: true,
       data: record.data,
