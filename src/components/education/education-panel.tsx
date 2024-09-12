@@ -26,7 +26,9 @@ export default function EducationPanel() {
   return (
     <div className="education-panel my-2">
       <Card>
-        <h2 className="text-2xl font-bold tracking-tight">Education Details</h2>
+        <h2 className="text-lg md:text-2xl font-bold tracking-tight">
+          Education Details
+        </h2>
         {EDUCATION_DETAILS.map((education) => (
           <InstituteInfo key={education.name} institute={education} />
         ))}

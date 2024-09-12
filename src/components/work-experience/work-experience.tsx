@@ -62,7 +62,9 @@ export default function WorkExperience() {
   return (
     <div className="experience-list">
       <Card className="shadow">
-        <h2 className="text-2xl font-bold tracking-tight">Work Experience</h2>
+        <h2 className="text-xl md:text-2xl font-bold tracking-tight">
+          Work Experience
+        </h2>
         {EXPERIENCES.map((exp) => (
           <CompanyExperience key={exp.companyName} experience={exp} />
         ))}

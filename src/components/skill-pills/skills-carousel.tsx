@@ -29,7 +29,7 @@ import { IconType } from "react-icons";
 
 const withCustomisation = (component: IconType) => {
   return createElement(component, {
-    className: "text-4xl",
+    className: "text-3xl md:text-4xl",
   });
 };
 

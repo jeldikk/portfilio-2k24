@@ -12,5 +12,5 @@ type Props = {
 
 export default function AmplifyConfigurer(props: Props) {
   const { children } = props;
-  return <Authenticator.Provider>{children}</Authenticator.Provider>;
+  return <Authenticator.Provider>{props.children}</Authenticator.Provider>;
 }
