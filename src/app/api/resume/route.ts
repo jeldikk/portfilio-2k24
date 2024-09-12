@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
     id: process.env.UPLOADED_RESUME_RECORD_ID as string,
   });
   const filePath = record.data?.filePath as string;
-  console.log({ filePath });
+  console.log({ filePath, record });
   const urlDetails = await runWithAmplifyServerContext({
     nextServerContext: { request, response },
     operation: async (contextSpec) => {
@@ -39,11 +39,11 @@ export async function GET(request: NextRequest) {
 
 export async function PATCH(request: Request) {
   const body = await request.json(); // {uploadedFile: string}
+  console.log({ env: JSON.stringify(process.env), "process.env": process.env });
   const { data, errors } = await cookiesClient.models.resumeUploads.get({
     id: process.env.UPLOADED_RESUME_RECORD_ID as string,
   });
-  console.log({ data, errors });
-  console.log({ cookies: cookies() });
+  console.log({ data, errors, cookies: cookies() });
   if (errors) {
     console.error({ errors });
     return Response.json(
