@@ -8,6 +8,7 @@ export const auth = defineAuth({
   loginWith: {
     email: true,
   },
+  accountRecovery: "NONE",
   triggers: {
     preSignUp,
   },
