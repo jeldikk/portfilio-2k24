@@ -12,16 +12,28 @@ export async function GET(request: NextRequest) {
     id: process.env.UPLOADED_RESUME_RECORD_ID as string,
   });
   const filePath = record.data?.filePath as string;
+  console.log({ filePath });
   const urlDetails = await runWithAmplifyServerContext({
     nextServerContext: { request, response },
     operation: async (contextSpec) => {
-      const downloadUrl = await getUrl(contextSpec, {
-        path: filePath,
-      });
-      // console.log({ downloadUrl });
-      return downloadUrl;
+      try {
+        const downloadUrl = await getUrl(contextSpec, {
+          path: filePath,
+          options: {
+            validateObjectExistence: true,
+            expiresIn: 5 * 60,
+          },
+        });
+        return downloadUrl;
+      } catch (err) {
+        console.error({ err });
+        return NextResponse.json({
+          message: err,
+        });
+      }
     },
   });
+
   return NextResponse.json(urlDetails);
 }
 
