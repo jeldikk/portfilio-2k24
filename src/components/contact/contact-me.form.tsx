@@ -96,7 +96,11 @@ export default function ContactMeForm() {
         />
       </div>
       <div className="button-controls">
-        <Button type="submit" isProcessing={isSubmitting}>
+        <Button
+          type="submit"
+          isProcessing={isSubmitting}
+          processingLabel="Submitting ..."
+        >
           Send Message
         </Button>
       </div>
