@@ -12,7 +12,10 @@ const schema = a.schema({
       contact: a.string().required().default("anonymous"),
       message: a.string().required(),
     })
-    .authorization((allow) => [allow.guest().to(["read", "create"])]),
+    .authorization((allow) => [
+      allow.guest().to(["read", "create"]),
+      allow.authenticated().to(["read", "create"]),
+    ]),
   resumeUploads: a
     .model({
       id: a.id().required(),
